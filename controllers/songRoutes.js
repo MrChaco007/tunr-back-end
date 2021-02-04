@@ -4,7 +4,7 @@ const Song = require('../models/song')
 
 //////// LIST ALL SONGS /////////////
 router.get('/', (req, res) => {
-    Song.find({}).then (allSongs => {
+    Song.find({}).then(allSongs => {
         res.json(allSongs)
     }).catch(err => res.json({status:400, err: err}))
 })
