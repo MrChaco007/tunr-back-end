@@ -30,6 +30,8 @@ app.get("/", (req, res) => {
   res.json({ msg: "hello world" });
 });
 
+const songRouter = require('./controllers/songRoutes')
+app.use('/songs/', songRouter)
 
 //LISTENER
 app.listen(PORT, () => {
