@@ -4,7 +4,7 @@ const Song = require('../models/song')
 
 //////// LIST ALL SONGS /////////////
 router.get('/', (req, res) => {
-    Song.find({}).populate('songs').then (allSongs => {
+    Song.find({}).then (allSongs => {
         res.json(allSongs)
     }).catch(err => res.json({status:400, err: err}))
 })
@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 /////// GET SONG BY TITLE //////////
 router.get('/:title', (req, res) => {
     Song.findOne({title: req.params.title})
-    .then((song) => res.json({status: 200, song: song})
+    .then((song) => res.json(song)
     )
     .catch(err => res.json({status:400, err: err}))
 })
