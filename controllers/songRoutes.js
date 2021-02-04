@@ -18,9 +18,28 @@ router.get('/:title', (req, res) => {
 })
 
 //////// CREATE A SONG /////////////
+router.post('/', (req, res) => {
+    const song = req.body
+    Song.create(song)
+    .then((song) => res.json({status: 200, data: song})
+    )
+    .catch(err => res.json({status:400, err: err}))
+})
 
 /////// UPDATE A SONG /////////////
+router.put('/updateSong/:id', (req, res) => {
+    Song.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    .then((song) => res.json({status: 200, data: song})
+    )
+    .catch(err => res.json({status:400, err: err}))
+})
 
 /////// DELETE A SONG ////////////
+router.delete('/:id', (req, res) => {
+    Song.findByIdAndDelete({})
+    .then((song) => res.json({status: 200, msg: 'Song has been deleted'})
+    )
+    .catch(err => res.json({status:400, err: err}))
+})
 
 module.exports = router
