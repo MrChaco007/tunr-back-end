@@ -36,7 +36,7 @@ router.put('/updateSong/:id', (req, res) => {
 
 /////// DELETE A SONG ////////////
 router.delete('/:id', (req, res) => {
-    Song.findByIdAndDelete({})
+    Song.findByIdAndDelete(req.params.id)
     .then((song) => res.json({status: 200, msg: 'Song has been deleted'})
     )
     .catch(err => res.json({status:400, err: err}))
